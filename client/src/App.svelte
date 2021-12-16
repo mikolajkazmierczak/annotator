@@ -1,4 +1,6 @@
 <script>
+  import { onMount } from 'svelte';
+
   async function fetchPOST(url, json) {
     let base_url = 'http://localhost:8000';
     let options = {
@@ -25,13 +27,13 @@
   }
   function next(danger) {
     if (danger != undefined) {
-      data[current].annotation.object[subcurrent].danger = { _text: danger };
       fetchPOST('/write', {
         folder: folder,
         image: data[current].jpg,
         sub: subcurrent,
         danger: danger,
       });
+      data[current].annotation.object[subcurrent].danger = { _text: danger };
     }
     subcurrent++;
     if (subcurrent == data[current].annotation.object.length) {
@@ -63,33 +65,29 @@
 
   let loading = false;
 
-  let folder = 'test';
+  let folders = [];
+  let folder;
   let data;
   let current = 0;
   let subcurrent = 0;
+
+  onMount(async () => {
+    const res = await fetch('http://localhost:8000/folders');
+    folders = await res.json();
+    folder = folders[0];
+  });
 </script>
 
 <svelte:body on:keydown={handleKeydown} />
 
 <main>
   <div class="folder">
-    <label>
-      <input type="radio" bind:group={folder} name="folder" value={'test'} />
-      test
-    </label>
-    <label>
-      <input type="radio" bind:group={folder} name="folder" value={'train'} />
-      train
-    </label>
-    <label>
-      <input
-        type="radio"
-        bind:group={folder}
-        name="folder"
-        value={'validation'}
-      />
-      validation
-    </label>
+    {#each folders as f}
+      <label>
+        <input type="radio" bind:group={folder} name="folder" value={f} />
+        {f}
+      </label>
+    {/each}
   </div>
   {#if loading}
     <p class="title">Loading...</p>
