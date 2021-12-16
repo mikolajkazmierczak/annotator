@@ -22,6 +22,6 @@
       <xmax>182</xmax>
       <ymax>150</ymax>
     </bndbox>
-    <danger>2</danger>
+    <danger>0</danger>
   </object>
 </annotation>

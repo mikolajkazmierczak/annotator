@@ -7,6 +7,7 @@
     "client": "cd client && npm run build && npm run start"
   },
   "dependencies": {
+    "async": "^3.2.2",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "xml-js": "^1.6.11"

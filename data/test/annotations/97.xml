@@ -22,7 +22,7 @@
       <xmax>91</xmax>
       <ymax>68</ymax>
     </bndbox>
-    <danger>1</danger>
+    <danger>0</danger>
   </object>
   <object>
     <name>fire</name>
@@ -35,7 +35,7 @@
       <xmax>145</xmax>
       <ymax>69</ymax>
     </bndbox>
-    <danger>2</danger>
+    <danger>0</danger>
   </object>
   <object>
     <name>fire</name>
@@ -48,6 +48,6 @@
       <xmax>195</xmax>
       <ymax>68</ymax>
     </bndbox>
-    <danger>0</danger>
+    <danger>1</danger>
   </object>
 </annotation>
